@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    
     const scroller = document.getElementById('auto-scrolling-icons');
     if (scroller) {
         const originalIcons = Array.from(scroller.children);
@@ -102,10 +103,9 @@ document.addEventListener('DOMContentLoaded', () => {
         window.getSelection().removeAllRanges();
     }
 
-    // --- (هذا هو الجزء الجديد الذي تمت إضافته) ---
     async function fetchTokenStats() {
-        document.getElementById('stat-holders').innerText = '3551'; 
-        document.getElementById('stat-integrations').innerText = '5';
+        document.getElementById('stat-holders').innerText = '1.4M+'; 
+        document.getElementById('stat-integrations').innerText = '150+';
         
         document.getElementById('stat-marketcap').innerText = '...';
         document.getElementById('stat-volume').innerText = '...';
@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const cgPromise = fetch(`https://api.coingecko.com/api/v3/coins/${coingeckoId}`);
             const dsPromise = fetch(`https://api.dexscreener.com/latest/Token/Search?q=${contractAddress}`);
 
-            const [cgResponse, dsResponse] = await Promise.all([cgPromise, dsPromise]);
+            const [cgResponse, dsResponse] = await Promise.all([cgPromise, dsResponse]);
 
             if (!cgResponse.ok) throw new Error('CoinGecko API failed');
             if (!dsResponse.ok) throw new Error('DexScreener API failed');
@@ -154,12 +154,12 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Failed to fetch token stats:', error);
             document.getElementById('stat-marketcap').innerText = 'N/A';
             document.getElementById('stat-volume').innerText = 'N/A';
-            document.getElementById('stat-followers').innerText ='9999';
+            document.getElementById('stat-followers').innerText = 'N/A';
             document.getElementById('stat-liquidity').innerText = 'N/A';
         }
     }
 
     fetchTokenStats();
-    // --- (نهاية الجزء المضاف) ---
 
 });
+
